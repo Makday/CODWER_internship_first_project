@@ -6,18 +6,27 @@
 @implements IAsyncDisposable
 @inject IDbContextFactory<TodoApp.Data.TodoAppContext> DbFactory
 
-<PageTitle>Index</PageTitle>
+<PageTitle>To-do</PageTitle>
 
-<h1>Index</h1>
+<h1>"To-do" tasks management</h1>
 
 <p>
-    <a href="todotasks/create">Create New</a>
+    <a href="todotasks/create">Add a new task</a>
 </p>
 
-<QuickGrid Class="table" Items="context.Task">
-    <PropertyColumn Property="todotask => todotask.IsCompleted" />
-    <PropertyColumn Property="todotask => todotask.TaskName" />
-    <PropertyColumn Property="todotask => todotask.DueDate" />
+<QuickGrid Class="table" Items="context.Task.OrderBy(t => t.IsCompleted)">
+    <TemplateColumn Title="Is completed?" Context="todotask" Sortable="true">
+        @if (todotask.IsCompleted)
+        {
+            <span style="color:green;">&#x2611;</span> @* ☑ check mark *@
+        }
+        else
+        {
+            <span style="color:red;">&#x2610;</span> @* ☐ empty box *@
+        }
+    </TemplateColumn>
+    <PropertyColumn Property="todotask => todotask.TaskName" Title="The task" Sortable="true" />
+    <PropertyColumn Property="todotask => todotask.DueDate" Title="Due date" Format="dd/MM/yyyy" Sortable="true" />
 
     <TemplateColumn Context="todotask">
         <a href="@($"todotasks/edit?id={todotask.Id}")">Edit</a> |

@@ -351,3 +351,4 @@ D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoAp
 D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp\obj\Debug\net9.0\compressed\unlu0xluo6-eu7w3d5g1a.gz
 D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp\obj\Debug\net9.0\compressed\3gin1ph7ub-25o87uqmvr.gz
 D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp\obj\Debug\net9.0\compressed\hq25zse84y-gigyc5mf4m.gz
+D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp\obj\Debug\net9.0\TodoApp.sourcelink.json
