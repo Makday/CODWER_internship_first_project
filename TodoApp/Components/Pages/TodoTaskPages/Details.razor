@@ -1,0 +1,50 @@
+﻿@page "/todotasks/details"
+@using Microsoft.EntityFrameworkCore
+@using TodoApp.Models
+@inject IDbContextFactory<TodoApp.Data.TodoAppContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h2>TodoTask</h2>
+    <hr />
+    @if (todotask is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">IsCompleted</dt>
+            <dd class="col-sm-10">@todotask.IsCompleted</dd>
+            <dt class="col-sm-2">TaskName</dt>
+            <dd class="col-sm-10">@todotask.TaskName</dd>
+            <dt class="col-sm-2">DueDate</dt>
+            <dd class="col-sm-10">@todotask.DueDate</dd>
+        </dl>
+        <div>
+            <a href="@($"/todotasks/edit?id={todotask.Id}")">Edit</a> |
+            <a href="@($"/todotasks")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    private TodoTask? todotask;
+
+    [SupplyParameterFromQuery]
+    private Guid Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        todotask = await context.Task.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (todotask is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}

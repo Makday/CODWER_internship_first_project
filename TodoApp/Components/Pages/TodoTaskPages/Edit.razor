@@ -1,0 +1,99 @@
+﻿@page "/todotasks/edit"
+@using Microsoft.EntityFrameworkCore
+@using TodoApp.Models
+@inject IDbContextFactory<TodoApp.Data.TodoAppContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Edit</PageTitle>
+
+<h1>Edit</h1>
+
+<h2>TodoTask</h2>
+<hr />
+@if (TodoTask is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="TodoTask" OnValidSubmit="UpdateTodoTask" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary role="alert"/>
+                <input type="hidden" name="TodoTask.Id" value="@TodoTask.Id" />
+                <div class="mb-3">
+                    <label for="iscompleted" class="form-label">IsCompleted:</label>
+                    <InputCheckbox id="iscompleted" @bind-Value="TodoTask.IsCompleted" class="form-check-input" />
+                    <ValidationMessage For="() => TodoTask.IsCompleted" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="taskname" class="form-label">TaskName:</label>
+                    <InputText id="taskname" @bind-Value="TodoTask.TaskName" class="form-control" aria-required="true"/>
+                    <ValidationMessage For="() => TodoTask.TaskName" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="duedate" class="form-label">DueDate:</label>
+                    <InputDate id="duedate" @bind-Value="TodoTask.DueDate" class="form-control" />
+                    <ValidationMessage For="() => TodoTask.DueDate" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </EditForm>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="/todotasks">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromQuery]
+    private Guid Id { get; set; }
+
+    [SupplyParameterFromForm]
+    private TodoTask? TodoTask { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        TodoTask ??= await context.Task.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (TodoTask is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more information, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task UpdateTodoTask()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Attach(TodoTask!).State = EntityState.Modified;
+
+        try
+        {
+            await context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!TodoTaskExists(TodoTask!.Id))
+            {
+                NavigationManager.NavigateTo("notfound");
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        NavigationManager.NavigateTo("/todotasks");
+    }
+
+    private bool TodoTaskExists(Guid id)
+    {
+        using var context = DbFactory.CreateDbContext();
+        return context.Task.Any(e => e.Id == id);
+    }
+}

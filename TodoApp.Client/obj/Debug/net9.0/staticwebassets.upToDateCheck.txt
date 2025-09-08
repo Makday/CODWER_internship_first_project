@@ -1,0 +1,4 @@
+wwwroot\appsettings.Development.json
+wwwroot\appsettings.json
+D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp.Client\wwwroot\appsettings.Development.json
+D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp.Client\wwwroot\appsettings.json

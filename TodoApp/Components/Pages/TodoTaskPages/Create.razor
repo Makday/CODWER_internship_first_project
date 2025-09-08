@@ -1,0 +1,54 @@
+﻿@page "/todotasks/create"
+@using Microsoft.EntityFrameworkCore
+@using TodoApp.Models
+@inject IDbContextFactory<TodoApp.Data.TodoAppContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h2>TodoTask</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="TodoTask" OnValidSubmit="AddTodoTask" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert"/>
+            <div class="mb-3">
+                <label for="iscompleted" class="form-label">IsCompleted:</label> 
+                <InputCheckbox id="iscompleted" @bind-Value="TodoTask.IsCompleted" class="form-check-input" /> 
+                <ValidationMessage For="() => TodoTask.IsCompleted" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="taskname" class="form-label">TaskName:</label> 
+                <InputText id="taskname" @bind-Value="TodoTask.TaskName" class="form-control" aria-required="true"/> 
+                <ValidationMessage For="() => TodoTask.TaskName" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="duedate" class="form-label">DueDate:</label> 
+                <InputDate id="duedate" @bind-Value="TodoTask.DueDate" class="form-control" /> 
+                <ValidationMessage For="() => TodoTask.DueDate" class="text-danger" /> 
+            </div>        
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/todotasks">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private TodoTask TodoTask { get; set; } = new();
+
+    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task AddTodoTask()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Task.Add(TodoTask);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/todotasks");
+    }
+}
