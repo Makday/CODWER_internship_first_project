@@ -23,3 +23,11 @@ D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoAp
 D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp.Client\obj\Debug\net9.0\staticwebassets.build.json
 D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp.Client\obj\Debug\net9.0\staticwebassets.build.json
 D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp.Client\obj\Debug\net9.0\staticwebassets.build.json
+D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp.Client\obj\Debug\net9.0\staticwebassets.build.json
+D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp.Client\obj\Debug\net9.0\staticwebassets.build.json
+D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp.Client\obj\Debug\net9.0\staticwebassets.build.json
+D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp.Client\obj\Debug\net9.0\staticwebassets.build.json
+D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp.Client\obj\Debug\net9.0\staticwebassets.build.json
+D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp.Client\obj\Debug\net9.0\staticwebassets.build.json
+D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp.Client\obj\Debug\net9.0\staticwebassets.build.json
+D:\bred\Visual Studio Projects\internship (1)\BlazorApp_internship_codwer\TodoApp\TodoApp.Client\obj\Debug\net9.0\staticwebassets.build.json
